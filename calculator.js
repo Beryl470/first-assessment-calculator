@@ -1,60 +1,59 @@
+//Array to store calculation history
 let history = [];
 
-// Append numbers/operators to display
-function appendValue(value) {
-    const display = document.getElementById('display');
-    display.value += value;
+//Basic operation functions 
+function add(a, b) {
+    let result = a + b;
+    storeCalculation(a, b, "+", result);
+    return result;
 }
 
-// Clear display
-function clearDisplay() {
-    document.getElementById('display').value = '';
+function subtract(a, b) {
+    let result = a - b;
+    storeCalculation(a, b, "-", result);
+    return result;
 }
 
-// Calculate the result
-function calculateResult() {
-    const display = document.getElementById('display');
-    const expression = display.value;
+function multiply(a, b) {
+    let result = a * b;
+    storeCalculation(a, b, "*", result);
+    return result;
+}
 
-    if (!expression) return;
-
-    try {
-        // Evaluate the expression
-        let result = eval(expression);
-        display.value = result;
-
-        // Add to history
-        addToHistory(`${expression} = ${result}`);
-    } catch (e) {
-        display.value = 'Error';
+function divide(a, b) {
+    if (b === 0) {
+        storeCalculation(a, b, "/", "Error: Division by zero");
+        return "Error: Division by zero";
     }
+    let result = a / b;
+    storeCalculation(a, b, "/", result);
+    return result;
 }
 
-// Update history display
-function addToHistory(entry) {
-    history.push(entry);
-    const historyList = document.getElementById('historyList');
-    historyList.innerHTML = '';
-
-    if (history.length === 0) {
-        const li = document.createElement('li');
-        li.textContent = 'No history has been made';
-        historyList.appendChild(li);
-    } else {
-        history.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            historyList.appendChild(li);
-        });
-    }
+// Function to store calculations in an array
+function storeCalculation(a, b, operator, result) {
+    history.push({
+        operand1: a,
+        operand2: b,
+        operator: operator,
+        result: result
+    });
 }
 
-//clears history
-function clearHistory() {
-    history = [];
-    const historyList = document.getElementById('historyList');
-    historyList.innerHTML = '';
-    const li = document.createElement('li');
-    li.textContent = 'No history has been made';
-    historyList.appendChild(li);
+// Function to display history 
+function displayHistory() {
+    console.log("=== Calculation History ===");
+    history.forEach((entry, index) => {
+        console.log(
+            `${index + 1}. ${entry.operand1} ${entry.operator} ${entry.operand2} = ${entry.result}`
+        );
+    });
 }
+
+// Example Usage
+console.log(add(10, 5));        
+console.log(subtract(20, 4));   
+console.log(multiply(3, 7));    
+console.log(divide(15, 3));    
+console.log(divide(10, 0));     
+displayHistory();
