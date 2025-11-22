@@ -1,26 +1,40 @@
-// Array to store calculation history
 let history = [];
 
-// Get input values
-function getInputValues() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
+// Append numbers/operators to display
+function appendValue(value) {
+    const display = document.getElementById('display');
+    display.value += value;
+}
 
-    if (isNaN(num1) || isNaN(num2)) {
-        alert('Please enter valid numbers');
-        return null;
+// Clear display
+function clearDisplay() {
+    document.getElementById('display').value = '';
+}
+
+// Calculate the result
+function calculateResult() {
+    const display = document.getElementById('display');
+    const expression = display.value;
+
+    if (!expression) return;
+
+    try {
+        // Evaluate the expression
+        let result = eval(expression);
+        display.value = result;
+
+        // Add to history
+        addToHistory(`${expression} = ${result}`);
+    } catch (e) {
+        display.value = 'Error';
     }
-    return { num1, num2 };
 }
 
 // Update history display
-function updateHistory(expression = null) {
+function addToHistory(entry) {
+    history.push(entry);
     const historyList = document.getElementById('historyList');
     historyList.innerHTML = '';
-
-    if (expression) {
-        history.push(expression);
-    }
 
     if (history.length === 0) {
         const li = document.createElement('li');
@@ -35,44 +49,12 @@ function updateHistory(expression = null) {
     }
 }
 
-// Clear history
+//clears history
 function clearHistory() {
     history = [];
-    updateHistory();
+    const historyList = document.getElementById('historyList');
+    historyList.innerHTML = '';
+    const li = document.createElement('li');
+    li.textContent = 'No history has been made';
+    historyList.appendChild(li);
 }
-
-// Arithmetic operations
-function add() {
-    const values = getInputValues();
-    if (!values) return;
-    const result = values.num1 + values.num2;
-    updateHistory(`${values.num1} + ${values.num2} = ${result}`);
-}
-
-function subtract() {
-    const values = getInputValues();
-    if (!values) return;
-    const result = values.num1 - values.num2;
-    updateHistory(`${values.num1} - ${values.num2} = ${result}`);
-}
-
-function multiply() {
-    const values = getInputValues();
-    if (!values) return;
-    const result = values.num1 * values.num2;
-    updateHistory(`${values.num1} × ${values.num2} = ${result}`);
-}
-
-function divide() {
-    const values = getInputValues();
-    if (!values) return;
-    if (values.num2 === 0) {
-        alert("Cannot divide by zero!");
-        return;
-    }
-    const result = values.num1 / values.num2;
-    updateHistory(`${values.num1} ÷ ${values.num2} = ${result}`);
-}
-
-// Initialize empty history
-updateHistory();

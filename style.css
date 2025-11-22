@@ -20,24 +20,24 @@ body {
     margin-bottom: 20px;
 }
 
-.calculator input {
+#display {
     width: 100%;
     padding: 12px;
-    font-size: 1.2em;
-    margin: 5px 0;
+    font-size: 1.5em;
+    margin-bottom: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
+    text-align: right;
     box-sizing: border-box;
 }
 
-.calculator .buttons {
+.buttons {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
-    margin-top: 15px;
 }
 
-.calculator button {
+button {
     padding: 15px 0;
     font-size: 1.1em;
     border: none;
@@ -47,34 +47,34 @@ body {
     background-color: #e0e0e0;
 }
 
-.calculator button:hover {
+button:hover {
     background-color: #d4d4d4;
 }
 
-.calculator button.clear {
+button.clear {
     background-color: #f44336;
     color: white;
-    grid-column: span 3;
+    grid-column: span 2;
 }
 
-.calculator button.clear:hover {
+button.clear:hover {
     background-color: #da190b;
 }
 
-.calculator h3 {
+h3 {
     margin-top: 20px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
 }
 
-.calculator ul {
+ul {
     list-style-type: none;
     padding-left: 0;
     max-height: 150px;
     overflow-y: auto;
 }
 
-.calculator ul li {
+ul li {
     background-color: #f9f9f9;
     padding: 8px;
     margin-bottom: 5px;

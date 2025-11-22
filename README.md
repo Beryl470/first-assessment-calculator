@@ -1,23 +1,30 @@
- ## JavaScript Calculator
+## Calculator
 
-## Overview
-This is a simple calculator application built with HTML, CSS, and JavaScript. It allows users to perform basic arithmetic operations(addition, subtraction, multiplication, division) and keeps a history of all calculations performed.
+## Description
+This is a simple calculator built using HTML, CSS, and JavaScript.   
+The calculator can perform basic operations such as addition, subtraction, multiplication, and division.  
+It also keeps a history of all calculations made.
 
 ## Features
-- Add, subtract, multiply, and divide numbers.
-- Input validation to prevent invalid entries and division by zero.
-- Keeps a running history of calculations.
-- Displays "No history has been made" when no calculations exist.
-- Option to clear history.
+- Enter expressions
+- Displays results when pressing `=`
+- Calculation history
+- Shows "No history has been made" when empty
+- Clear display button (`C`)
+- Clear history button
 
 ## How to Use
-1. Enter two numbers in the input fields.
-2. Click the desired operation button (`+`, `-`, `×`, `÷`).
-3. The result is added to the history displayed below.
-4. To clear history, click the clear History button.
+1. Click number and operator buttons to build an expression.
+2. Press `=` to calculate the result.
+3. View previous calculations in the history section.
+4. Press `C` to clear the current input.
+5. Press 'Clear History' to remove all saved calculations.
 
 ## Files
-- `index.html` — main webpage containing the UI.
-- `style.css` — styles for the calculator.
-- `calculator.js` — JavaScript logic for calculations and history.
+- `index.html` – Main webpage  
+- `style.css` – Styling for the calculator  
+- `calculator.js` – JavaScript logic  
 
+## Notes
+- Invalid expressions will show "Error".
+- Division by zero is not allowed.
